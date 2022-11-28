@@ -300,8 +300,15 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  let result = [];
+  if (arr.length) {
+    result = arr.map((el, index) => {
+      const addArr = new Array(index + 1).fill(el);
+      return addArr;
+    });
+  }
+  return result.flat();
 }
 
 
@@ -366,9 +373,12 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
-  // return arr.sort();
+function sortDigitNamesByNumericOrder(arr) {
+  const digitsInOrder = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  const toSort = arr.map((el) => digitsInOrder.indexOf(el));
+  const sorted = toSort.sort((a, b) => a - b);
+  const result = sorted.map((el) => digitsInOrder[el]);
+  return result;
 }
 
 /**
@@ -553,8 +563,10 @@ function getIntervalArray(start, end) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  const numbersSet = new Set([...arr]);
+  const result = Array.from(numbersSet);
+  return result;
 }
 
 /**
@@ -622,8 +634,9 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  const result = indexes.reduce((res, item) => res[item], arr);
+  return result;
 }
 
 
