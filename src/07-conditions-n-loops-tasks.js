@@ -369,8 +369,27 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const brackets = {
+    '[': ']',
+    '{': '}',
+    '(': ')',
+    '<': '>',
+  };
+  const result = [];
+  for (let i = 0; i < str.length; i += 1) {
+    if (!result.length) {
+      result.push(str[i]);
+    } else {
+      const last = result[result.length - 1];
+      if (brackets[last] === str[i]) {
+        result.pop();
+      } else {
+        result.push(str[i]);
+      }
+    }
+  }
+  return result.length === 0;
 }
 
 
@@ -490,8 +509,28 @@ function getMatrixProduct(m1, m2) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
+function evaluateTicTacToePosition(/* p */) {
   throw new Error('Not implemented');
+  // if (Array.isArray(p) === false) {
+  //   return undefined;
+  // }
+  // for (let i = 0; i < 3; i += 1) {
+  //   if (p[0][i] && p[0][i] === p[1][i] && p[0][i] === p[2][i] && p[0][i]) {
+  //     return p[0][i];
+  //   }
+  //   if (p[i][0] && p[i][0] === p[i][1] && p[i][0] === p[i][2] && p[i][0]) {
+  //     return p[i][0];
+  //   }
+  //   if (p[i][i] && p[i][i] === p[i + 1][i + 1] && p[i][i] === p[i + 2][i + 2]) {
+  //     return p[i][i];
+  //   }
+  //   if (p[0][2]) {
+  //     if (p[1][1] === p[0][2] && p[2][0] === p[0][2]) {
+  //       return p[0][2];
+  //     }
+  //   }
+  // }
+  // return undefined;
 }
 
 
